@@ -26,7 +26,7 @@
                                    <h2>Looks like you want to get in touch, huh!</h2>
                                    <br>
                                    <h5>Well, if you must...shoot me an email at</h5> 
-                                   <h5 style="font-weight: bold;">imharshmalik@gmail.com</h5> 
+                                   <h5 style="font-weight: bold;">xxxxxxxxx@gmail.com</h5> 
                                    <h5>I don't take much time to reply. Looking forward to hearing from you.</h5> 
                                    <br>
                                    <h4 class="text-center" style="font-family: Cinzel Decorative">Your friend in time, Harsh</h4>
