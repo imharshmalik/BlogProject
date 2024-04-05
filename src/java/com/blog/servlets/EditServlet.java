@@ -20,11 +20,10 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class EditServlet extends HttpServlet {
 
-       protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-                         throws ServletException, IOException {
+       protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
               response.setContentType("text/html;charset=UTF-8");
               try (PrintWriter out = response.getWriter()) {
-                     /* TODO output your page here. You may use following sample code. */
+                     
                      String updatedName = request.getParameter("name");
                      String updatedEmail = request.getParameter("email");
                      String updatedPassword = request.getParameter("password");
@@ -36,13 +35,16 @@ public class EditServlet extends HttpServlet {
                      user.setName(updatedName);
                      user.setEmail(updatedEmail);
                      user.setPassword(updatedPassword);
+                     String oldPic = user.getProfilePic();
                      user.setProfilePic(newProfilePicName);
 
                      UserDAO userdao = new UserDAO(ConnectionProvider.getConnection());
                      boolean ifUpdated = userdao.updateUserDetails(user);
                      if (ifUpdated) {
-                            String path = request.getRealPath("/") + "profile_pics" + File.separator + user.getProfilePic();
-                            Helper.deleteFile(path);
+                            String path = request.getRealPath("/") + "user_profile_pics" + File.separator + user.getProfilePic();
+                            
+                            String oldPicPath = request.getRealPath("/") + "user_profile_pics" + File.separator + oldPic;
+                            Helper.deleteFile(oldPicPath);
                             if (Helper.savePicture(part.getInputStream(), path)) {
                                    Message m = new Message("Details updated successfully", "success", "alert-success");
                                    s.setAttribute("msg", m);
